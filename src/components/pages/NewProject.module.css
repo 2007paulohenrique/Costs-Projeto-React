@@ -1,0 +1,12 @@
+.new_project {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2em 0;
+    gap: 1em;
+}
+
+.description {
+    font-size: 1em;
+    color: rgb(90, 89, 89);
+}

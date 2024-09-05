@@ -34,11 +34,12 @@
     color: white;
 }
 
-span {
-    color: rgb(193, 176, 25);
+.copyright span {
+    color: #ffbb33;
 }
 
 .mid_title {
     color: white;
     margin-bottom: 1em;
+    user-select: none;
 }

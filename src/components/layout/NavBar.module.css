@@ -16,10 +16,6 @@
     list-style: none;
 }
 
-.item {
-    transition: all 0.2s ease-in-out;
-}
-
 .item a {
     color: white;
     text-decoration: none;
@@ -28,15 +24,12 @@
     padding: 1em 1.5em;
     display: flex;
     align-items: center;
+    transition: all 0.2s ease-in-out;
 }
 
 
-.item:hover {
-    background-color: #141414;
-}
-
-.links:hover > .item:not(:hover) {
-    filter: blur(1px);
+.item:hover a {
+    color: #ffbb33;
 }
 
 .img {

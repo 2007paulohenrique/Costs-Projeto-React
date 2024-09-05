@@ -1,0 +1,27 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2em 0;
+    gap: 2em;
+}
+
+.title {
+    font-size: 2.5em;
+}
+
+.title span {
+    color: #ffbb33;
+    background-color: #171717;
+    padding: 0 0.2em;
+    border-radius: 3px; 
+}
+
+.description {
+    font-size: 1em;
+    color: rgb(90, 89, 89);
+}
+
+.img {
+    height: 25em;
+}

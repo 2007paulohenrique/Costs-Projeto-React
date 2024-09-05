@@ -1,0 +1,16 @@
+.SubmitBtn {
+    background-color: #171717;
+    color: white;
+    width: max-content;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    padding: 0.6em 1em;
+    font-size: 0.8em;
+    border: none;
+    cursor: pointer;
+    margin-top: 2em;
+}
+
+.SubmitBtn:hover {
+    color: #ffbb33;
+}
