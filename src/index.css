@@ -7,5 +7,6 @@
 
 html, body, #root {
   background-color: #dcdcdc;
-  height: 100%;
+  height: max-content;
+  min-height: 100dvh;
 }

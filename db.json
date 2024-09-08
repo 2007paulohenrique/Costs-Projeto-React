@@ -1,0 +1,32 @@
+{
+  "projects": [
+    {
+      "id": "f325",
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "d9b4",
+      "cost": 0,
+      "services": []
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Infra"
+    },
+    {
+      "id": "2",
+      "name": "Desenvolvimento"
+    },
+    {
+      "id": "3",
+      "name": "Design"
+    },
+    {
+      "id": "4",
+      "name": "Planejamento"
+    }
+  ]
+}
