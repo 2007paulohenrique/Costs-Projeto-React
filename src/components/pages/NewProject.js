@@ -11,7 +11,9 @@ function NewProject() {
         project.services = [];
 
         const goToProjects = () => {
-            navigate('/projects');
+            navigate('/projects', {
+                state: {message: "Projeto criado com sucesso.", type: "success"}
+            });
         } 
 
         fetch('http://localhost:5000/projects', {
@@ -30,11 +32,11 @@ function NewProject() {
     }
 
     return (
-        <div className={styles.new_project}>
+        <main className={styles.new_project}>
             <h1>Novo Projeto</h1>
             <p className={styles.description}>Preencha os campos para criar um novo projeto.</p>
             <ProjectForm handleSubmit={createPost} btnText="Criar Projeto" />
-        </div>
+        </main>
     );
 }
 export default NewProject;

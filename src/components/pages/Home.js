@@ -4,12 +4,12 @@ import LinkBtn from '../layout/LinkBtn';
 
 function Home() {
     return (
-        <section className={styles.home} >
+        <main className={styles.home} >
             <h1 className={styles.title} >Bem-vindo ao <span>Costs</span></h1>
             <p className={styles.description}>Comece a gerenciar seus projetos de forma rápida e eficiente!</p>
             <LinkBtn to="/newproject" text="Novo Projeto" />
             <img className={styles.img} src={savings} alt="Costs" ></img>
-        </section>
+        </main>
     );
 }
 
