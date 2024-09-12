@@ -1,6 +1,8 @@
 .button {
     background-color: #171717;
     color: white;
+    width: max-content;
+    height: max-content;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
     padding: 0.6em 1em;

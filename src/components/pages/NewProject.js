@@ -12,7 +12,7 @@ function NewProject() {
 
         const goToProjects = () => {
             navigate('/projects', {
-                state: {message: "Projeto criado com sucesso.", type: "success"}
+                state: {message: `Projeto ${project.name || ""} criado com sucesso.`, type: "success"}
             });
         } 
 
@@ -25,7 +25,6 @@ function NewProject() {
         })
             .then((resp) => resp.json())
             .then((data) => {
-                // console.log(data);
                 goToProjects();
             })
             .catch((err) => console.log(err));

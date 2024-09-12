@@ -25,6 +25,7 @@
 .img {
     height: 2em;
     cursor: pointer;
+    display: block;
 }
 
 .copyright {

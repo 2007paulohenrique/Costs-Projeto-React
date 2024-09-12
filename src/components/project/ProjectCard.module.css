@@ -1,0 +1,73 @@
+.projectCard {
+    width: 30%;
+    height: max-content;
+    min-width: min-content;
+    margin: 0 3% 2em 0;
+    padding: 1em;
+    border: 3px solid #3d3d3d;
+    border-radius: 10px;
+    box-shadow: 10px 10px 30px rgb(220, 219, 219);
+    background-color: #ece9e9;
+}
+
+.projectCard p {
+    margin-top: 0.5em;
+}
+
+.title {
+    background-color: #171717;
+    color: #ffbb33;
+    padding: 0.5em 1em;
+    text-align: center;
+    margin-bottom: 2em;
+    text-transform: capitalize;
+}
+
+.budget {
+    color: #fda900;
+}
+
+.projectCard span,
+.actions button {
+    font-weight: bold;
+}
+
+.actions {
+    display: flex;
+    gap: 1em;
+    margin-top: 2em;
+    flex-wrap: wrap;
+}
+
+.actions button {
+    border-radius: 4px;
+    padding: 0.2em 0.5em;
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+}
+
+.actions button:hover {
+    transform: scale(1.08);
+}
+
+.actions button img {
+    height: 1em;
+    display: block;
+}
+
+.edit {
+    background-color: #dcae6c;
+}
+
+
+.remove {
+    background-color: #f18e8e;
+}
+
+.category {
+
+}

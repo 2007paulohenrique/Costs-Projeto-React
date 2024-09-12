@@ -5,9 +5,9 @@ import Select from '../form/Select';
 import SubmitBtn from '../form/SubmitBtn';
 import styles from './ProjectForm.module.css';
 
-function ProjectForm({handleSubmit, btnText, projectdata}) {
+function ProjectForm({handleSubmit, btnText, projectData}) {
     const [categories, setCategories] = useState([]);
-    const [project, setProject] = useState(projectdata || {});
+    const [project, setProject] = useState(projectData || {});
 
     useEffect(() => {
         fetch('http://localhost:5000/categories', {
@@ -29,7 +29,7 @@ function ProjectForm({handleSubmit, btnText, projectdata}) {
     }
 
     function handleChange (e) {
-        setProject({...project, [e.target.name]: e.target.value});
+        setProject({ ...project, [e.target.name]: e.target.value});
     }
 
     function handleCategory (e) {
@@ -50,7 +50,7 @@ function ProjectForm({handleSubmit, btnText, projectdata}) {
                 name="name" 
                 placeholder="Insira o nome do projeto" 
                 text="Nome do Projeto:" 
-                value={project.name ? project.name : ""} 
+                value={project.name} 
             />
             <Input 
                 handleOnChange={handleChange} 
@@ -58,10 +58,10 @@ function ProjectForm({handleSubmit, btnText, projectdata}) {
                 name="budget" 
                 placeholder="Insira o orçamento total do projeto" 
                 text="Orçamento Total:" 
-                value={project.budget ? project.budget : ""} 
+                value={project.budget} 
             />
             <Select 
-                name="categoria" 
+                name="category" 
                 text="Categoria:" 
                 options={categories} 
                 handleOnChange={handleCategory} 
