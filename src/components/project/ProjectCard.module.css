@@ -1,7 +1,7 @@
 .projectCard {
     width: 30%;
+    max-width: 30%;
     height: max-content;
-    min-width: min-content;
     margin: 0 3% 2em 0;
     padding: 1em;
     border: 3px solid #3d3d3d;
@@ -102,4 +102,20 @@
 
 .projectCard .category .planejamento {
     background-color: #6cc4df;
+}
+
+p.description {
+    width: 100%;
+    text-align: justify;
+    word-break: break-word;
+    hyphens: auto;
+    text-wrap: wrap;
+    overflow-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 0;
 }
