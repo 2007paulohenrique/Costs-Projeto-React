@@ -1,0 +1,56 @@
+.project {
+    display: flex;  
+    flex-direction: column;
+    margin: 2em;
+    width: 100%;
+    position: relative;
+}
+
+.projectDetails {
+    width: max-content;
+    margin-left: 1em;
+}
+
+.projectDetails h2 {
+    color: rgb(95, 95, 95);
+}
+
+.project hr {
+    width: calc(100% + 1em);
+    height: 3px;
+    background-color: black;
+    margin: 1em 0;
+    
+}
+
+.projectDetails span {
+    font-weight: bold;
+}
+
+.btn {
+    background-color: #171717;
+    color: white;
+    width: max-content;
+    height: max-content;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    padding: 0.6em 1em;
+    margin-top: 2em;
+    font-size: 0.8em;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover {
+    color: #ffbb33;
+}
+
+.title {
+    background-color: #171717;
+    color: #ffbb33;
+    padding: 0.2em 1em;
+    margin-bottom: 1em;
+    text-align: center;
+    text-transform: capitalize;
+    width: max-content;
+}

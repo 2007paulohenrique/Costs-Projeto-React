@@ -63,11 +63,43 @@
     background-color: #dcae6c;
 }
 
+.edit a {
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+    color: unset;
+    text-decoration: none;
+}
 
 .remove {
     background-color: #f18e8e;
 }
 
-.category {
+.projectCard .category {
+    display: flex;
+    align-items: center;
+}
 
+.projectCard .category .categoryMark {
+    display: inline-block;
+    height: 0.5em;
+    width: 0.5em;
+    border-radius: 50%;
+    margin-right: 0.5em;
+}
+
+.projectCard .category .design {
+    background-color: #363ac7;
+}
+
+.projectCard .category .desenvolvimento {
+    background-color: #4fd55a;
+}
+
+.projectCard .category .infra {
+    background-color: #d65d2e;
+}
+
+.projectCard .category .planejamento {
+    background-color: #6cc4df;
 }

@@ -1,20 +1,35 @@
 {
   "projects": [
     {
-      "id": "8a9e",
-      "name": "projeto teste",
-      "budget": "10000",
+      "id": "f4fc",
+      "name": "projeto tste 3",
+      "budget": "120102",
+      "category": {
+        "id": "4",
+        "name": "Planejamento"
+      },
       "cost": 0,
       "services": []
     },
     {
-      "id": "e675",
-      "name": "projeto teste 2",
-      "budget": "1010101",
+      "id": "bd77",
+      "name": "projeto teste quatro",
+      "budget": "10394848",
       "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
+        "id": "4",
+        "name": "Planejamento"
       },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "b731",
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
+      "name": "projeto teste 5",
+      "budget": "111111",
       "cost": 0,
       "services": []
     }
