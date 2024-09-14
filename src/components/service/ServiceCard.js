@@ -3,7 +3,8 @@ import Remove_icon from '../../img/remove_icon.svg';
 
 function ServiceCard({id, name, cost, description, handleRemove}) {
     const remove = (e) => {
-
+        e.preventDefault();
+        handleRemove(id, cost);
     }
 
     return (

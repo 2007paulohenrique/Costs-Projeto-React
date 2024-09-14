@@ -89,8 +89,26 @@ function Project() {
             .catch((err) => console.log(err))
     }
 
-    function removeService() {
-        
+    function removeService(id, cost) {
+        const servicesUpdate = project.services.filter((service) => service.id !== id);
+        const projectUpdate = project;
+        projectUpdate.services = servicesUpdate;
+        projectUpdate.cost = parseFloat(projectUpdate.cost) - parseFloat(cost)
+
+        fetch(`http://localhost:5000/projects/${projectUpdate.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(projectUpdate)
+        })
+            .then((resp) => resp.json)
+            .then((data) => {
+                setProject(projectUpdate);
+                setServices(servicesUpdate);
+                setMessage({msg: "Serviço removido com sucesso.", type: "success"});
+            })
+            .catch((err) => console.log(err))
     }
 
     function toggleProjectForm() {
@@ -131,6 +149,7 @@ function Project() {
 
                     <div className={styles.services}>
                         <h2>Serviços:</h2>
+                        {services.length === 0 && <p>Não há serviços cadastrados</p>}
 
                         <Container customClass="start" >
                             {services.length > 0 && (
@@ -145,7 +164,6 @@ function Project() {
                             )}
                         </Container>
 
-                        {services.length === 0 && <p>Não há serviços cadastrados</p>}
 
                         <button type="button" onClick={toggleServiceForm} className={styles.btn} >
                             {!showServiceForm ? "Adicionar Serviço" : "Voltar"}
