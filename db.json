@@ -13,85 +13,31 @@
     },
     {
       "id": "bd77",
-      "name": "projeto teste quatro",
-      "budget": "1010010101",
+      "name": "Projeto teste quatro",
+      "budget": "1010010101.00",
       "category": {
         "id": "4",
         "name": "Planejamento"
       },
-      "cost": 6021309,
+      "cost": 4232,
       "services": [
         {
-          "cost": "1000",
-          "id": "3a7b2eb6-a283-465f-958a-7cbc47e1c947",
-          "name": "servico 1",
-          "description": "um"
+          "name": "khvyctcfghjh",
+          "cost": "1111",
+          "description": "qwrdcfg",
+          "id": "ff8e4fea-40d3-482c-a956-a24ac413ff5a"
         },
         {
-          "cost": "10000",
-          "id": "2eb7ffad-a6de-46b7-94e2-047d1dde5a15",
-          "name": "servico 2",
-          "description": "dois"
+          "name": "jacare",
+          "cost": "1000.00",
+          "description": "jaca",
+          "id": "6c4c9725-f498-4c69-ae52-7b5ec688567d"
         },
         {
-          "cost": "11",
-          "id": "1f571eeb-10ff-4065-bb73-194445723800"
-        },
-        {
-          "cost": "11",
-          "id": "1f571eeb-10ff-4065-bb73-194445723800"
-        },
-        {
-          "cost": "11",
-          "id": "1f571eeb-10ff-4065-bb73-194445723800"
-        },
-        {
-          "name": "servico teste",
-          "cost": "1111111",
-          "description": "teste",
-          "id": "2d0bd26a-f8bc-4fe4-b3a9-9303fded2ee3"
-        },
-        {
-          "name": "servico teste",
-          "cost": "1111111",
-          "description": "teste",
-          "id": "2d0bd26a-f8bc-4fe4-b3a9-9303fded2ee3"
-        },
-        {
-          "name": "paulo henrique",
-          "cost": "12122",
-          "description": "papapapa",
-          "id": "7fdfe258-284f-441c-9409-4cf71e60500a"
-        },
-        {
-          "description": "qkbauidfvbuyaevfuqevfucbuaybcy7evctvcyrtucybavryftucertuvctuevuabeycbuetifcvtqeucvtyecbyievtyuvydtyvtyvecd",
-          "cost": "2626226",
-          "name": "teste44",
-          "id": "7851258b-39cc-489d-9de6-5048d784f226"
-        },
-        {
-          "name": "teste76263",
-          "cost": "11111",
-          "description": "q22wcx",
-          "id": "68822d67-91db-4090-ac24-afe2b0eb71fa"
-        },
-        {
-          "name": "papsjdjdnj",
-          "cost": "1127373",
-          "description": " jhdcbcdw",
-          "id": "d650e6a6-0fa7-4cbe-b264-a4595ea2cc4d"
-        },
-        {
-          "name": "desclonga",
-          "cost": "11111",
-          "description": "ontem eu vi acordei e pensei que seria uma boa ideia programar em java, pensei errado e parei de fazer isso",
-          "id": "f9130515-246c-4cf0-b3da-86f531dd4152"
-        },
-        {
-          "description": "Desde os primórdios da civilização humana, a curiosidade tem sido o motor que impulsiona o desenvolvimento das sociedades. O desejo de compreender o mundo ao nosso redor levou à criação de ferramentas, à descoberta de novos territórios e ao desenvolvimento de culturas complexas.",
-          "cost": "111",
-          "name": "papekekqopdk",
-          "id": "1c7c36d2-3a72-4eb5-92bd-bab2a6cc9e7e"
+          "name": "Dbhvwurvsubj",
+          "cost": "2121.00",
+          "description": "Wiabfiw",
+          "id": "36f16997-52ee-41c5-8518-8b7c4eb0aeaf"
         }
       ]
     },
@@ -102,7 +48,7 @@
         "name": "Design"
       },
       "name": "projeto teste 5",
-      "budget": "111111",
+      "budget": "1",
       "cost": 0,
       "services": []
     },
@@ -113,6 +59,72 @@
       "category": {
         "id": "4",
         "name": "Planejamento"
+      },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "417b",
+      "name": "qq",
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "c42f",
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "8a87",
+      "name": "11",
+      "budget": "1",
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "b148",
+      "name": "projeto tste 3",
+      "budget": "1",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "cccc",
+      "name": "projeto tste ",
+      "budget": "11",
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "6d88",
+      "name": "projeto ts",
+      "budget": "111",
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "c1c1",
+      "name": "Aecbhhebvrubaeu",
+      "budget": "119292.00",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
       },
       "cost": 0,
       "services": []

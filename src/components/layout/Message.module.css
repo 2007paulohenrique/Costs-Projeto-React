@@ -1,7 +1,8 @@
 .message {
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: fixed;
+    top: 1em;
+    left: 50%;
+    transform: translateX(-50%);
     padding: 0.6em 1em;
     border-radius: 8px;
     font-weight: bold;
@@ -11,13 +12,13 @@
 
 .success {
     border: 3px solid #436329;
-    background-color: #88cc5094;
+    background-color: #5d8e35;
     color: rgb(3, 32, 0);
 }
 
 .error {
     border: 3px solid #6e2b2b;
-    background-color: #ff000070;
+    background-color: #8d2c2c;
     color: #280101;
 }
 

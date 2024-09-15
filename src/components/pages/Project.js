@@ -19,20 +19,18 @@ function Project() {
     const [message, setMessage] = useState({});
 
     useEffect(() => {
-        setTimeout(() => {
-            fetch(`http://localhost:5000/projects/${id}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+        fetch(`http://localhost:5000/projects/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                setProject(data);
+                setServices(data.services);
             })
-                .then((resp) => resp.json())
-                .then((data) => {
-                    setProject(data);
-                    setServices(data.services);
-                })
-                .catch((err) => console.log(err))
-        }, 3000);
+            .catch((err) => console.log(err))
     }, [id]);
 
     function editPost(project) {
@@ -59,21 +57,32 @@ function Project() {
             .catch((err) => console.log(err));
     }
 
+    function formatService(service) {
+        let name = service.name.trim();
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+        const cost = parseFloat(service.cost).toFixed(2);
+        let description = service.description.trim();
+        description = description.charAt(0).toUpperCase() + description.slice(1);
+
+        return {name, cost, description};
+    }
+
     function createService(project) {
-        
         const lastService = project.services[project.services.length - 1];
-        lastService.id = uuidv4()
+        const formattedService = formatService(lastService);
+
+        formattedService.id = uuidv4();
         
         const newCost = parseFloat(lastService.cost) + parseFloat(project.cost);
 
         if (newCost > parseFloat(project.budget)) {
-            setMessage({});
             setMessage({msg: "Orçamento ultrapassado.", type: "error"});
-            project.services.pop();
+            services.pop();
             return;
         }
 
         project.cost = newCost;
+        project.services[project.services.length - 1] = formattedService;
         
         fetch(`http://localhost:5000/projects/${project.id}`, {
             method: 'PATCH',
@@ -82,9 +91,10 @@ function Project() {
             },
             body: JSON.stringify(project)
         })
-            .then((resp) => resp.json)
+            .then((resp) => resp.json())
             .then((data) => {
                 setShowServiceForm(false);
+                setMessage({msg: "Serviço adicionado com sucesso.", type: "success"});
             })
             .catch((err) => console.log(err))
     }
@@ -102,7 +112,7 @@ function Project() {
             },
             body: JSON.stringify(projectUpdate)
         })
-            .then((resp) => resp.json)
+            .then((resp) => resp.json())
             .then((data) => {
                 setProject(projectUpdate);
                 setServices(servicesUpdate);
@@ -164,12 +174,14 @@ function Project() {
                             )}
                         </Container>
 
+                        <hr/>
 
                         <button type="button" onClick={toggleServiceForm} className={styles.btn} >
                             {!showServiceForm ? "Adicionar Serviço" : "Voltar"}
                         </button>
 
                         {showServiceForm && (<ServiceForm
+                            projectId={id}
                             btnText="Adicionar"
                             handleSubmit={createService}
                             projectData={project}
