@@ -11,14 +11,21 @@ import Loading from "../layout/Loading";
 function Projects() {
     const [projects, setProjects] = useState([]);
     const [removeLoading, setRemoveLoading] = useState(false);
-    const [projectMessage, setProjectMessage] = useState({});
+    const [message, setMessage] = useState({});
+
+    function setMessageWithReset(newMessage) {
+        setMessage(null); 
+        setTimeout(() => {
+            setMessage(newMessage); 
+        }, 1);
+    }
     
     const location = useLocation();
    
     useEffect(() => {
         if (location.state) {
             const { message, type } = location.state;
-            setProjectMessage({ message, type });
+            setMessageWithReset({ message, type });
         }
     }, [location.state]);
     
@@ -38,7 +45,7 @@ function Projects() {
                 const project = searchProject(id);
                 const removeMessage = `O projeto ${project.name || ""} foi removido com sucesso.`;
                 setProjects(projects.filter((proj) => proj.id !== project.id));
-                setProjectMessage({message: removeMessage, type: "success"});
+                setMessageWithReset({message: removeMessage, type: "success"});
             })
             .catch((err) => console.log(err))
     };
@@ -61,7 +68,7 @@ function Projects() {
     return (
         <main className={styles.projects}> 
             <h1>Meus Projetos</h1>
-            {projectMessage && <Message msg={projectMessage.message} type={projectMessage.type} />}
+            {message && <Message msg={message.message} type={message.type} />}
             <Container customClass="start" >
                 {projects.length > 0 && 
                     projects.map((project) => <ProjectCard 

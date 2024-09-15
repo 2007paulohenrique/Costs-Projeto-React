@@ -1,132 +1,50 @@
 {
   "projects": [
     {
-      "id": "f4fc",
-      "name": "projeto tste 3",
-      "budget": "120102",
-      "category": {
-        "id": "4",
-        "name": "Planejamento"
-      },
-      "cost": 0,
-      "services": []
-    },
-    {
       "id": "bd77",
       "name": "Projeto teste quatro",
-      "budget": "1010010101.00",
+      "budget": "112.00",
       "category": {
         "id": "4",
         "name": "Planejamento"
       },
-      "cost": 4232,
+      "cost": 1114111,
       "services": [
         {
-          "name": "khvyctcfghjh",
-          "cost": "1111",
-          "description": "qwrdcfg",
-          "id": "ff8e4fea-40d3-482c-a956-a24ac413ff5a"
-        },
-        {
-          "name": "jacare",
-          "cost": "1000.00",
-          "description": "jaca",
-          "id": "6c4c9725-f498-4c69-ae52-7b5ec688567d"
-        },
-        {
-          "name": "Dbhvwurvsubj",
-          "cost": "2121.00",
-          "description": "Wiabfiw",
-          "id": "36f16997-52ee-41c5-8518-8b7c4eb0aeaf"
+          "name": "Paulinazul",
+          "cost": "1114111.00",
+          "description": "",
+          "id": "ffc8aeb8-21b0-469e-bec0-ef6565273d00"
         }
       ]
     },
     {
-      "id": "b731",
+      "id": "3280",
+      "name": "Qqqqq1",
+      "budget": "1110.00",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": "889.00",
+      "services": [
+        {
+          "name": "1002",
+          "cost": "1000.00",
+          "description": "",
+          "id": "d5a6a344-2f7f-4ab6-b815-0ed0f5b10995"
+        }
+      ]
+    },
+    {
+      "id": "65bc",
+      "name": "Jajaja",
+      "budget": "11.00",
       "category": {
         "id": "3",
         "name": "Design"
       },
-      "name": "projeto teste 5",
-      "budget": "1",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "464f",
-      "name": "final",
-      "budget": "10000",
-      "category": {
-        "id": "4",
-        "name": "Planejamento"
-      },
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "417b",
-      "name": "qq",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "c42f",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "8a87",
-      "name": "11",
-      "budget": "1",
-      "category": {
-        "id": "1",
-        "name": "Infra"
-      },
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "b148",
-      "name": "projeto tste 3",
-      "budget": "1",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "cccc",
-      "name": "projeto tste ",
-      "budget": "11",
-      "category": {
-        "id": "1",
-        "name": "Infra"
-      },
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "6d88",
-      "name": "projeto ts",
-      "budget": "111",
-      "category": {
-        "id": "1",
-        "name": "Infra"
-      },
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "c1c1",
-      "name": "Aecbhhebvrubaeu",
-      "budget": "119292.00",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 0,
+      "cost": "0.00",
       "services": []
     }
   ],

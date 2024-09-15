@@ -5,7 +5,7 @@ import Loading from '../layout/Loading';
 import ProjectForm from '../project/ProjectForm';
 import Message from '../layout/Message';
 import ServiceForm from '../service/ServiceForm';
-import {parse, v4 as uuidv4} from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 import ServiceCard from '../service/ServiceCard';
 import Container from '../layout/Container';
 
@@ -13,10 +13,18 @@ function Project() {
     const {id} = useParams();
 
     const [project, setProject] = useState([]);
+    // const [service, setService] = useState({});
     const [services, setServices] = useState([]);
     const [showProjectForm, setShowProjectForm] = useState(false);
     const [showServiceForm, setShowServiceForm] = useState(false); 
     const [message, setMessage] = useState({});
+
+    function setMessageWithReset(newMessage) {
+        setMessage(null); 
+        setTimeout(() => {
+            setMessage(newMessage); 
+        }, 1);
+    }
 
     useEffect(() => {
         fetch(`http://localhost:5000/projects/${id}`, {
@@ -34,13 +42,6 @@ function Project() {
     }, [id]);
 
     function editPost(project) {
-        setMessage({});
-
-        if (project.budget < project.cost) {
-            setMessage({msg: "O orçamento do projeto não pode ser menor que o seu custo!", type: "error"});
-            return;
-        }
-
         fetch(`http://localhost:5000/projects/${id}`, {
             method: 'PATCH',
             headers: {
@@ -52,17 +53,21 @@ function Project() {
             .then((data) => {
                 setProject(data);
                 setShowProjectForm(false);
-                setMessage({msg: "Projeto modificado com sucesso.", type: "success"});
+                setMessageWithReset({msg: "Projeto modificado com sucesso.", type: "success"});
             })
             .catch((err) => console.log(err));
     }
 
     function formatService(service) {
+        console.log(service);
         let name = service.name.trim();
         name = name.charAt(0).toUpperCase() + name.slice(1);
         const cost = parseFloat(service.cost).toFixed(2);
-        let description = service.description.trim();
-        description = description.charAt(0).toUpperCase() + description.slice(1);
+        let description = (service.description ? service.description.trim() : "");
+
+        if (description) {
+            description = description.charAt(0).toUpperCase() + description.slice(1);
+        }
 
         return {name, cost, description};
     }
@@ -76,12 +81,12 @@ function Project() {
         const newCost = parseFloat(lastService.cost) + parseFloat(project.cost);
 
         if (newCost > parseFloat(project.budget)) {
-            setMessage({msg: "Orçamento ultrapassado.", type: "error"});
+            setMessageWithReset({msg: "Orçamento ultrapassado.", type: "error"});
             services.pop();
             return;
         }
 
-        project.cost = newCost;
+        project.cost = parseFloat(newCost).toFixed(2);
         project.services[project.services.length - 1] = formattedService;
         
         fetch(`http://localhost:5000/projects/${project.id}`, {
@@ -94,7 +99,7 @@ function Project() {
             .then((resp) => resp.json())
             .then((data) => {
                 setShowServiceForm(false);
-                setMessage({msg: "Serviço adicionado com sucesso.", type: "success"});
+                setMessageWithReset({msg: `O serviço ${formattedService.name} foi adicionado com sucesso.`, type: "success"});
             })
             .catch((err) => console.log(err))
     }
@@ -102,9 +107,10 @@ function Project() {
     function removeService(id, cost) {
         const servicesUpdate = project.services.filter((service) => service.id !== id);
         const projectUpdate = project;
+        const newCost = parseFloat(projectUpdate.cost) - parseFloat(cost)
         projectUpdate.services = servicesUpdate;
-        projectUpdate.cost = parseFloat(projectUpdate.cost) - parseFloat(cost)
-
+        projectUpdate.cost = parseFloat(newCost).toFixed(2);
+        
         fetch(`http://localhost:5000/projects/${projectUpdate.id}`, {
             method: 'PATCH',
             headers: {
@@ -114,9 +120,10 @@ function Project() {
         })
             .then((resp) => resp.json())
             .then((data) => {
+                const deletedService = services.find((service) => service.id === id);
                 setProject(projectUpdate);
                 setServices(servicesUpdate);
-                setMessage({msg: "Serviço removido com sucesso.", type: "success"});
+                setMessageWithReset({msg: `O serviço ${deletedService.name} foi removido com sucesso.`, type: "success"});
             })
             .catch((err) => console.log(err))
     }
@@ -143,7 +150,7 @@ function Project() {
                                 <p><span>Categoria:</span> {project.category.name}</p>
                                 <p><span>Orçamento total:</span> R${project.budget}</p>
                                 <p><span>Valor gasto:</span> R${project.cost}</p>
-                                <p><span>Orçamento restante:</span> R${project.budget - project.cost}</p>
+                                <p><span>Orçamento restante:</span> R${parseFloat(project.budget - project.cost).toFixed(2)}</p>
                             </div>
                         </div>
                     ) : (

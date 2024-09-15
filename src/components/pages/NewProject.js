@@ -7,7 +7,7 @@ function NewProject() {
     const navigate = useNavigate();
 
     function createPost(project) {
-        project.cost = 0;
+        project.cost = parseFloat(0).toFixed(2);
         project.services = [];
 
         const goToProjects = () => {

@@ -12,6 +12,13 @@ function ProjectForm({handleSubmit, btnText, projectData}) {
     const [message, setMessage] = useState({});
     const [projects, setProjects] = useState([]);
 
+    function setMessageWithReset(newMessage) {
+        setMessage(null); 
+        setTimeout(() => {
+            setMessage(newMessage); 
+        }, 1);
+    }
+
     useEffect(() => {
         fetch('http://localhost:5000/categories', {
             method: 'GET',
@@ -56,7 +63,7 @@ function ProjectForm({handleSubmit, btnText, projectData}) {
 
     function emptyFieldValidation() {
         if (!(project.name && project.budget && project.category)) {
-            setMessage({msg: "Preencha todos os campos para criar um projeto.", type:"error"});
+            setMessageWithReset({msg: "Preencha todos os campos para criar um projeto.", type:"error"});
             return false;
         }        
 
@@ -64,15 +71,18 @@ function ProjectForm({handleSubmit, btnText, projectData}) {
     }
 
     function nameValidation() {
-        const sameName = projects.some((proj) => proj.name === project.name);
+        const formattedProjectName = (project.name.charAt(0).toUpperCase() + project.name.slice(1));
+        const sameName = projects.some((proj) => formattedProjectName === proj.name);
 
-        if (sameName && !projectData) {
-            setMessage({msg: "Um projeto com o mesmo nome já está cadastrado.", type:"error"});
-            return false;    
+        if ((projectData && (formattedProjectName !== projectData.name)) || !projectData) {
+            if (sameName) {
+                setMessageWithReset({msg: "Um projeto com o mesmo nome já está cadastrado.", type:"error"});
+                return false;    
+            }
         }
 
         if (project.name.length > 50) {
-            setMessage({msg: "O nome de um projeto não pode exceder 50 caracteres.", type:"error"});
+            setMessageWithReset({msg: "O nome de um projeto não pode exceder 50 caracteres.", type:"error"});
             return false;        
         }        
 
@@ -81,9 +91,15 @@ function ProjectForm({handleSubmit, btnText, projectData}) {
 
     function budgetValidation() {
         if (project.budget < 0) {
-            setMessage({msg: "O valor do orçamento de um projeto deve ser positivo.", type:"error"});
+            setMessageWithReset({msg: "O valor do orçamento de um projeto deve ser positivo.", type:"error"});
             return false;
         }        
+
+        if (parseFloat(project.budget) < parseFloat(project.cost)) {
+            console.log(project.budget, project.cost, project.budget < project.cost);
+            setMessageWithReset({msg: "O orçamento do projeto não pode ser menor que o seu custo!", type: "error"});
+            return;
+        }
 
         return true;
     }
@@ -100,11 +116,12 @@ function ProjectForm({handleSubmit, btnText, projectData}) {
     const submit = (e) => {
         e.preventDefault();
 
-        const formattedProject = formatProject(project);
-
+        
         if (emptyFieldValidation() && nameValidation() && budgetValidation()) {
+            const formattedProject = formatProject(project);
             handleSubmit(formattedProject);
         }
+        
     }
 
     function handleChange (e) {
@@ -123,7 +140,7 @@ function ProjectForm({handleSubmit, btnText, projectData}) {
 
     return (
         <>
-            <Message msg={message.msg} type={message.type} />
+            {message && <Message msg={message.msg} type={message.type} />}
             <form className={styles.form} onSubmit={submit}>
                 <Input 
                     handleOnChange={handleChange} 

@@ -11,6 +11,13 @@ function ServiceForm({projectId, handleSubmit, btnText, projectData}) {
     const [services, setServices] = useState([]);
     const [message, setMessage] = useState({});
 
+    function setMessageWithReset(newMessage) {
+        setMessage(null); 
+        setTimeout(() => {
+            setMessage(newMessage); 
+        }, 1);
+    }
+
     useEffect(() => {
         fetch(`http://localhost:5000/projects/${projectId}`, {
             method: 'GET',
@@ -27,7 +34,7 @@ function ServiceForm({projectId, handleSubmit, btnText, projectData}) {
     
     function emptyFieldValidation() {
         if (!(service.name && service.cost)) {
-            setMessage({msg: "Preench os campos de nome e custo para adicionar um serviço.", type:"error"});
+            setMessageWithReset({msg: "Preencha os campos de nome e custo para adicionar um serviço.", type:"error"});
             return false;
         }        
 
@@ -36,7 +43,7 @@ function ServiceForm({projectId, handleSubmit, btnText, projectData}) {
 
     function nameValidation() {
         if (service.name.length > 50) {
-            setMessage({msg: "O nome de um serviço não pode exceder 50 caracteres.", type:"error"});
+            setMessageWithReset({msg: "O nome de um serviço não pode exceder 50 caracteres.", type:"error"});
             return false;        
         }        
 
@@ -45,7 +52,7 @@ function ServiceForm({projectId, handleSubmit, btnText, projectData}) {
 
     function costValidation() {
         if (service.cost < 0) {
-            setMessage({msg: "O valor do custo de um serviço deve ser positivo.", type:"error"});
+            setMessageWithReset({msg: "O valor do custo de um serviço deve ser positivo.", type:"error"});
             return false;
         }        
 
@@ -53,10 +60,11 @@ function ServiceForm({projectId, handleSubmit, btnText, projectData}) {
     }
 
     function sameNameServiceValidation() {
-        const sameName = services.some((serv) => serv.name === service.name);
+        const formattedServiceName = (service.name.charAt(0).toUpperCase() + service.name.slice(1));
+        const sameName = services.some((serv) => serv.name === formattedServiceName);
 
         if (sameName) {
-            setMessage({msg: "O projeto já possui um serviço com o mesmo nome.", type:"error"});
+            setMessageWithReset({msg: "O projeto já possui um serviço com o mesmo nome.", type:"error"});
             return false;    
         }
 
@@ -79,7 +87,7 @@ function ServiceForm({projectId, handleSubmit, btnText, projectData}) {
 
     return (
         <>
-            <Message msg={message.msg} type={message.type} />
+            {message && <Message msg={message.msg} type={message.type} />}
             <form onSubmit={submit} className={styles.form} >
                 <Input
                     type="text"
