@@ -1,53 +1,5 @@
 {
-  "projects": [
-    {
-      "id": "bd77",
-      "name": "Projeto teste quatro",
-      "budget": "112.00",
-      "category": {
-        "id": "4",
-        "name": "Planejamento"
-      },
-      "cost": 1114111,
-      "services": [
-        {
-          "name": "Paulinazul",
-          "cost": "1114111.00",
-          "description": "",
-          "id": "ffc8aeb8-21b0-469e-bec0-ef6565273d00"
-        }
-      ]
-    },
-    {
-      "id": "3280",
-      "name": "Qqqqq1",
-      "budget": "1110.00",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": "889.00",
-      "services": [
-        {
-          "name": "1002",
-          "cost": "1000.00",
-          "description": "",
-          "id": "d5a6a344-2f7f-4ab6-b815-0ed0f5b10995"
-        }
-      ]
-    },
-    {
-      "id": "65bc",
-      "name": "Jajaja",
-      "budget": "11.00",
-      "category": {
-        "id": "3",
-        "name": "Design"
-      },
-      "cost": "0.00",
-      "services": []
-    }
-  ],
+  "projects": [],
   "categories": [
     {
       "id": "1",

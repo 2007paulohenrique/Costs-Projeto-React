@@ -10,6 +10,8 @@ function ProjectForm({handleSubmit, btnText, projectData}) {
     const [categories, setCategories] = useState([]);
     const [project, setProject] = useState(projectData || {});
     const [message, setMessage] = useState({});
+    const [alertMessage, setAlertMessage] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
     const [projects, setProjects] = useState([]);
 
     function setMessageWithReset(newMessage) {
@@ -62,7 +64,7 @@ function ProjectForm({handleSubmit, btnText, projectData}) {
     }, []);
 
     function emptyFieldValidation() {
-        if (!(project.name && project.budget && project.category)) {
+        if (!(project.name && project.budget && project.category) || project.name.trim() === "") {
             setMessageWithReset({msg: "Preencha todos os campos para criar um projeto.", type:"error"});
             return false;
         }        
@@ -71,7 +73,7 @@ function ProjectForm({handleSubmit, btnText, projectData}) {
     }
 
     function nameValidation() {
-        const formattedProjectName = (project.name.charAt(0).toUpperCase() + project.name.slice(1));
+        const formattedProjectName = (replaceSpace(project.name).charAt(0).toUpperCase() + replaceSpace(project.name).slice(1));
         const sameName = projects.some((proj) => formattedProjectName === proj.name);
 
         if ((projectData && (formattedProjectName !== projectData.name)) || !projectData) {
@@ -81,7 +83,7 @@ function ProjectForm({handleSubmit, btnText, projectData}) {
             }
         }
 
-        if (project.name.length > 50) {
+        if (replaceSpace(project.name).length > 50) {
             setMessageWithReset({msg: "O nome de um projeto não pode exceder 50 caracteres.", type:"error"});
             return false;        
         }        
@@ -96,21 +98,39 @@ function ProjectForm({handleSubmit, btnText, projectData}) {
         }        
 
         if (parseFloat(project.budget) < parseFloat(project.cost)) {
-            console.log(project.budget, project.cost, project.budget < project.cost);
             setMessageWithReset({msg: "O orçamento do projeto não pode ser menor que o seu custo!", type: "error"});
-            return;
+            return false;
+        }
+
+        
+        if ((projectData && (projectData.budget !== project.budget)) || !projectData) {     
+            if (project.budget > 100000) {
+                setAlertMessage("O valor do orçamento do projeto é elevado. Deseja continuar?");
+                setShowAlert(true);
+                return false;
+            }
+
+            if (project.budget < 2000) {
+                setAlertMessage("O valor do orçamento do projeto é baixo. Deseja continuar?");
+                setShowAlert(true);
+                return false;
+            }
         }
 
         return true;
     }
 
     function formatProject(project) {
-        let name = project.name.trim();
+        let name = replaceSpace(project.name);
         name = name.charAt(0).toUpperCase() + name.slice(1);
         const budget = parseFloat(project.budget).toFixed(2);
         const category = project.category;
 
         return {name, budget, category};
+    }
+
+    function replaceSpace(text) {
+        return text.trim().replace(/\s+/g, " ");
     }
 
     const submit = (e) => {
@@ -126,6 +146,7 @@ function ProjectForm({handleSubmit, btnText, projectData}) {
 
     function handleChange (e) {
         setProject({ ...project, [e.target.name]: e.target.value});
+        setShowAlert(false);
     }
     
     function handleCategory (e) {
@@ -138,9 +159,27 @@ function ProjectForm({handleSubmit, btnText, projectData}) {
         });
     }
 
+    function confirm() {
+        setShowAlert(false);
+        const formattedProject = formatProject(project);
+        handleSubmit(formattedProject);
+    }
+
+    function cancel() {
+        setShowAlert(false);
+    }
+
     return (
         <>
             {message && <Message msg={message.msg} type={message.type} />}
+            {showAlert && (
+                <Message
+                    type="alert"
+                    msg={alertMessage}
+                    handleConfirm={confirm}
+                    handleCancel={cancel}
+                />
+            )}
             <form className={styles.form} onSubmit={submit}>
                 <Input 
                     handleOnChange={handleChange} 

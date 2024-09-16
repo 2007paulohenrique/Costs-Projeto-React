@@ -13,10 +13,12 @@ function Project() {
     const {id} = useParams();
 
     const [project, setProject] = useState([]);
-    // const [service, setService] = useState({});
     const [services, setServices] = useState([]);
+    const [removedService, setRemovedService] = useState({});
     const [showProjectForm, setShowProjectForm] = useState(false);
     const [showServiceForm, setShowServiceForm] = useState(false); 
+    const [alertMessage, setAlertMessage] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
     const [message, setMessage] = useState({});
 
     function setMessageWithReset(newMessage) {
@@ -59,17 +61,20 @@ function Project() {
     }
 
     function formatService(service) {
-        console.log(service);
-        let name = service.name.trim();
+        let name = replaceSpace(service.name);
         name = name.charAt(0).toUpperCase() + name.slice(1);
         const cost = parseFloat(service.cost).toFixed(2);
-        let description = (service.description ? service.description.trim() : "");
+        let description = (service.description ? replaceSpace(service.description) : "");
 
         if (description) {
             description = description.charAt(0).toUpperCase() + description.slice(1);
         }
 
         return {name, cost, description};
+    }
+
+    function replaceSpace(text) {
+        return text.trim().replace(/\s+/g, " ");
     }
 
     function createService(project) {
@@ -103,11 +108,28 @@ function Project() {
             })
             .catch((err) => console.log(err))
     }
+    
+    function toggleProjectForm() {
+        setShowProjectForm(!showProjectForm);
+    }
 
-    function removeService(id, cost) {
-        const servicesUpdate = project.services.filter((service) => service.id !== id);
+    function toggleServiceForm() {
+        setShowServiceForm(!showServiceForm);
+    }
+
+    function removeService(id) {
+        setAlertMessage("Não será possível recuperar os dados do serviço removido. Deseja continuar?");
+        setShowAlert(true);
+
+        setRemovedService(services.find((serv) => serv.id === id));
+    }
+
+    function confirmRemoveService() {
+        setShowAlert(false);
+
+        const servicesUpdate = project.services.filter((service) => service.id !== removedService.id);
         const projectUpdate = project;
-        const newCost = parseFloat(projectUpdate.cost) - parseFloat(cost)
+        const newCost = parseFloat(projectUpdate.cost) - parseFloat(removedService.cost)
         projectUpdate.services = servicesUpdate;
         projectUpdate.cost = parseFloat(newCost).toFixed(2);
         
@@ -120,20 +142,15 @@ function Project() {
         })
             .then((resp) => resp.json())
             .then((data) => {
-                const deletedService = services.find((service) => service.id === id);
+                setMessageWithReset({msg: `O serviço ${removedService.name} foi removido com sucesso.`, type: "success"});
                 setProject(projectUpdate);
                 setServices(servicesUpdate);
-                setMessageWithReset({msg: `O serviço ${deletedService.name} foi removido com sucesso.`, type: "success"});
             })
             .catch((err) => console.log(err))
     }
 
-    function toggleProjectForm() {
-        setShowProjectForm(!showProjectForm);
-    }
-
-    function toggleServiceForm() {
-        setShowServiceForm(!showServiceForm);
+    function cancel() {
+        setShowAlert(false);
     }
 
     return (
@@ -141,6 +158,14 @@ function Project() {
             {project.name ? (
                 <div className={styles.project}>
                     {message && <Message type={message.type} msg={message.msg} /> }
+                    {showAlert && (
+                        <Message
+                            type="alert"
+                            msg={alertMessage}
+                            handleConfirm={confirmRemoveService}
+                            handleCancel={cancel}
+                        />
+                    )}
                     <h1 className={styles.title} >{project.name}</h1>
                     {!showProjectForm ? (
                         <div className={styles.projectDetails} >

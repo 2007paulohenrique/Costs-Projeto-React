@@ -8,6 +8,8 @@
     font-weight: bold;
     display: flex;
     align-items: center;
+    letter-spacing: -1px;
+    text-align: justify;
 }
 
 .success {
@@ -22,7 +24,38 @@
     color: #280101;
 }
 
+.alert {
+    border: 3px solid #593b0f;
+    background-color: #926b1d;
+    color: #210c00;
+}
+
+.alert img {
+    background-color: #210c00;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
 .message img {
     height: 2em;
     margin-right: 0.5em;
+}
+
+.button {
+    background-color: #171717;
+    color: white;
+    width: max-content;
+    height: max-content;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    padding: 0.6em 1em;
+    margin-left: 1em;
+    font-size: 0.6em;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.button:hover {
+    color: #ffbb33;
 }

@@ -10,7 +10,10 @@ import Loading from "../layout/Loading";
 
 function Projects() {
     const [projects, setProjects] = useState([]);
+    const [removedProject, setRemovedProject] = useState({});
     const [removeLoading, setRemoveLoading] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
     const [message, setMessage] = useState({});
 
     function setMessageWithReset(newMessage) {
@@ -34,20 +37,10 @@ function Projects() {
     }
 
     function removeProject(id) {
-       fetch(`http://localhost:5000/projects/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }) 
-            .then((resp) => resp.json())
-            .then((data) => {
-                const project = searchProject(id);
-                const removeMessage = `O projeto ${project.name || ""} foi removido com sucesso.`;
-                setProjects(projects.filter((proj) => proj.id !== project.id));
-                setMessageWithReset({message: removeMessage, type: "success"});
-            })
-            .catch((err) => console.log(err))
+        setAlertMessage("Os dados do projeto e seus serviços serão permanentemente removidos. Deseja continuar?");
+        setShowAlert(true);
+
+        setRemovedProject(searchProject(id));
     };
     
     useEffect(() => {
@@ -65,10 +58,39 @@ function Projects() {
             .catch((err) => console.log(err));
     }, [])
 
+    function confirmRemoveProject() {
+        setShowAlert(false);
+        fetch(`http://localhost:5000/projects/${removedProject.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }) 
+            .then((resp) => resp.json())
+            .then((data) => {
+                const removeMessage = `O projeto ${removedProject.name || ""} foi removido com sucesso.`;
+                setProjects(projects.filter((proj) => proj.id !== removedProject.id));
+                setMessageWithReset({message: removeMessage, type: "success"});
+            })
+            .catch((err) => console.log(err))
+    }
+
+    function cancel() {
+        setShowAlert(false);
+    }
+
     return (
         <main className={styles.projects}> 
             <h1>Meus Projetos</h1>
             {message && <Message msg={message.message} type={message.type} />}
+            {showAlert && (
+                <Message
+                    type="alert"
+                    msg={alertMessage}
+                    handleConfirm={confirmRemoveProject}
+                    handleCancel={cancel}
+                />
+            )}
             <Container customClass="start" >
                 {projects.length > 0 && 
                     projects.map((project) => <ProjectCard 
