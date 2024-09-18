@@ -9,3 +9,9 @@
 .description {
     color: rgb(90, 89, 89);
 }
+
+@media (min-width: 1800px) {
+    .new_project {
+        font-size: 1.3em;
+    }
+}

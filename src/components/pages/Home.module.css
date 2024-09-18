@@ -25,3 +25,15 @@
 .img {
     height: 25em;
 }
+
+@media (max-width: 495px) {
+    .home {
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 420px) {
+    .home {
+        font-size: 0.65em;
+    }
+}
