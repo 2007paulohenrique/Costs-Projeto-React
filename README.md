@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# Costs
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este repositório contém o código do projeto React Costs, um aplicativo web para gerenciamento de projetos e seus serviços, desenvolvido no curso de React do professor Matheus Battisti, além de funções adicionais que não foram exploradas durante do curso. Grande parte do material aqui presente foi criado durante o trabalho no projeto Costs do curso de ReactJS ministrado pelo professor [Matheus Battisti](https://www.youtube.com/@MatheusBattisti), disponível na plataforma YouTube.
 
-## Available Scripts
+## Funcionalidades do Aplicativo
 
-In the project directory, you can run:
+### Ações do Usuário 
 
-### `npm start`
+1. **Cadastro de Projetos** - Um usuário pode criar projetos que possuam nome, orçamento e categoria.
+2. **Exibição dos Projetos** - Um usuário pode consultar todos os projetos que criou e todas as suas informações.
+3. **Remoção de Projetos** - Um usuário pode remover permanentemente os projetos que criou, assim como todos os dados relacionados a ele.
+4. **Edição de Projetos** - Um usuário pode editar todos os dados dos projetos que criou.
+5. **Cadastro de Serviços** - Um usuário pode criar serviços que possuam nome, custo e descrição para um projeto.
+6. **Exibição dos serviços** - Um usuário pode acessar os serviços de um projeto que criou.
+7. **Remoção de Serviços** - Um usuário pode remover os serviços de um projeto que criou.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Validações
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Nome dos Projetos e Serviços** - Os nomes não poderão conter mais que 50 caracteres. Um projeto não pode ter o mesmo nome que outro já criado pelo usuário. Um serviço não pode ter o mesmo nome que outro pertencente ao mesmo projeto.
+2. **Orçamento** - O orçamento de um projeto não admite valores negativos, assim como não admite um valor menor que o valor já gasto do projeto, no caso de uma edição. 
+3. **Custo** - O valor do custo de um serviço não pode ser negativo nem maior que o valor disponível do projeto em que será atribuido.
+4. **Campos Vazios** - No formulário do projeto, todos os campos deverão ser preenchidos, já no formulário de serviço, somente os campos de nome e custo deverão ser preenchidos.
 
-### `npm test`
+### Avisos do Sistema
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Criação de Projetos e Serviços** - Um aviso será exibido na página quando um projeto ou serviço for criado com sucesso, assim como quando um projeto for editado.
+2. **Remoçao de Projetos e serviços** - Um aviso será exibido na página quando um projeto ou serviço for removido com sucesso.
+3. **Falha nas Validações** - Uma mensagem de erro será exibida ao usuário quando alguma validação nos formulários falhar, comunicando o motivo da falha e cancelando a criação de um novo projeto ou serviço.
+4. **Orçamento e custo** - Quando o valor do custo de um serviço ou orçamento de um projeto for muito alto ou muito baixo uma mensagem de confirmação será exibida ao usuário.
+5. **Tamanho da Descrição** - Uma mensagem de confirmação com um alerta será mostrado ao usuário quando a descrição de um serviço for muito longa.
+6. **Remoção de Projetos e Serviços** - Uma mensagem de alerta será mostrada ao usuário antes da exclusão de um projeto ou serviço.
 
-### `npm run build`
+### Formatação automática 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Nomes e Descrição** - Os valores inseridos nos campos de texto serão formatados para que não tenham espaços duplicados ou em seu início e fim, além de capitalizar a primeira letra dos seus textos.
+2. **Orçamento e Custo** - Os valores numéricos serão formatados para terem duas casas decimais.  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Principais Métodos, Funções e Hooks.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **useState** - Permite adicionar e gerenciar o estado dentro de um componente funcional.
+- **useEffect** - Lida com efeitos colaterais, como chamadas de APIs, manipulação de DOM, ou subscrições, executando funções após a renderização do componente.
+- **fetch** - Função nativa do JavaScript que permite fazer requisições HTTP assíncronas para servidores e manipular os dados recebidos.
+- **then** - Usado para executar uma função quando uma promisse é cumprida, nesse caso, a promisse retornada pelo método fetch.
+- **catch** - Usado para capturar e tratar erros que ocorrem durante a execução de uma promisse, nesse caso, a promisse retornada pelo fetch.
 
-### `npm run eject`
+## Tecnologias Utilizadas
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **HTML, CSS e JavaScript**: Tecnologias fundamentais para a criação de páginas web.
+- **React, React Router e UUID**: Bibliotecas específicas do ecossistema React que adicionam funcionalidades e facilidades ao desenvolvimento de aplicações React.
+- **JSON-Server** - Ferramenta que permite criar uma API REST falsa a partir de um arquivo JSON. Ele simula um servidor backend, permitindo operações CRUD.
+- **UUID** - Identificador único universal que pode ser gerado para identificar de forma exclusiva objetos em sistemas distribuídos.
+- **Node.js**: Ambiente de execução JavaScript do lado do servidor, permitindo a execução de código JavaScript fora do navegador.
+- **npm (Node Package Manager)**: Gerenciador de pacotes padrão para Node.js, utilizado para instalar, gerenciar e manter bibliotecas e ferramentas JavaScript.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Instalação
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Clone o repositório do projeto executando o comando `git clone https://github.com/2007paulohenrique/ReactJS-Estudo.git` em seu terminal.
+2. Navegue até o diretório do projeto executando `cd caminho_para_o_diretorio` no terminal.
+3. Instale o [Node.js](https://nodejs.org/) caso ainda não o tenha instalado, dessa forma. O npm será instalado automaticamente junto com o Node.js.
+4. Confirme a instalação do Node.js e do npm executando `node -v` e `npm -v`. Caso apareça suas versões, a instalação foi concluida com sucesso. 
+5. Instale as dependências do projeto com o comando `npm install`.
+6. Instale o React Router, JSON-Server e UUID com `npm install react-router-dom json-server uuid` no terminal.
+7. Inicie o servidor com `npm run backend` no terminal.
+8. Inicie o projeto com `npm start` e o acesse em um navegador web na URL `http://localhost:3000`. 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Estrutura do repositório
 
-## Learn More
+### Raiz do projeto:
+    
+- **/node_modules** - Contém todas as dependências do projeto necessárias para utilizar o React e outras bibliotecas e pacotes.
+- **/public** - Diretório contendo os arquivos estáticos da aplicação, incluindo o arquivo HTML principal.
+- **/src** - Diretório onde estão localizados os componentes React, incluindo o componente App e os arquivos de estilo CSS.
+- `db.json` - Banco de dados do projeto, podendo ser visto na porta 5000 do localhost.
+- `.gitignore` - Arquivo que especifica quais diretórios e arquivos devem ser ignorados pelo sistema de controle de versão Git.
+- `package.json` e `package-lock.json` - Arquivos que listam os scripts e as dependências do projeto, garantindo a instalação consistente dessas dependências através do npm.
+- `README.md` - Arquivo que contém a descrição do projeto e instruções de uso.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### /public:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `index.html` - Documento HTML principal, que fornece a estrutura inicial e os contêineres onde o React irá injetar e renderizar os componentes dinâmicos. 
+- `manifest.json` - Arquivo de configuração que fornece ao navegador informações sobre a aplicação web.
 
-### Code Splitting
+### /src:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **/components** - Componentes reutilizáveis da aplicação, incluindo os componentes das páginas e formulários.
+- **/img** - Imagens que foram utilizadas na aplicação.
+- `App.js` - Componente principal da aplicação React, atuando como o ponto de entrada para os componentes da interface do usuário e contendo as rotas e os componentes padrões de layout. 
+- `index.js` - Arquivo principal que inicializa a aplicação React, fazendo a montagem do componente App na DOM, em uma div com o id root, presente no index.html.
+- `index.css` - Folha de estilos global para a aplicação.
 
-### Analyzing the Bundle Size
+## Contato
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Caso tenha dúvidas, entre em contato:
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Nome: Paulo Henrique Barbosa do Prado Pereira
+- E-mail: pereirapaulo436@gmail.com
+- LinkedIn: [Paulo Barbosa](https://www.linkedin.com/in/paulo-barbosa-61a860303/)
+- GitHub: [2007paulohenrique](https://github.com/2007paulohenrique)
